@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS" xmlns:ns="http://www.tibco.com/3c6e8f52d5ea4b2fb03ed8fef89506ed/SOAPServiceBinding" xmlns:ns0="http://zip.example.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZipPort" targetNamespace="http://www.tibco.com/3c6e8f52d5ea4b2fb03ed8fef89506ed/SOAPServiceBinding">
+  <wsdl:import namespace="http://zip.example.com"/>
+  <wsdl:binding name="SOAPServiceBinding" type="ns0:ZipPort">
+    <soap:binding style="document" transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+    <jms:binding messageFormat="bytes"/>
+    <wsdl:operation name="getCityInfo">
+      <soap:operation soapAction="getCityInfo" style="document"/>
+      <wsdl:input>
+        <soap:body parts="zip" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="zipCode" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCityDistance">
+      <soap:operation soapAction="getCityDistance" style="document"/>
+      <wsdl:input>
+        <soap:body parts="zips" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="part1" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZipPort">
+    <wsdl:port binding="ns:SOAPServiceBinding" name="ZipPortSOAP">
+      <soap:address location=""/>
+      <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+      <jms:targetAddress destination="queue">queue.sample</jms:targetAddress>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

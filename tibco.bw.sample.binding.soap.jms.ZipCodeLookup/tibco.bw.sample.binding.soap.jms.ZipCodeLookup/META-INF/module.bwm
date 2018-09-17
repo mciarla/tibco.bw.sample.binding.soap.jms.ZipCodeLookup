@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:SOAPServiceBinding="http://www.tibco.com/3c6e8f52d5ea4b2fb03ed8fef89506ed/SOAPServiceBinding" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:axis2="http://xsd.tns.tibco.com/bw/models/binding/soap/axis2" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmlns:zip.example.com="http://zip.example.com" xmi:id="_q_m70Ep_EeS5QOpAWIuKAQ" targetNamespace="http://tns.tibco.com/bw/composite/tibco.bw.sample.binding.soap.jms.ZipCodeLookup" name="tibco.bw.sample.binding.soap.jms.ZipCodeLookup" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_zAlvsEp_EeS5QOpAWIuKAQ" name="ZipPort" promote="ComponentZipInfoService/ZipPort">
+    <sca:interface.wsdl xmi:id="_zAmWwEp_EeS5QOpAWIuKAQ" interface="http://zip.example.com#wsdl.interface(ZipPort)" scaext:wsdlLocation="../Service%20Descriptors/ZipInfo.wsdl"/>
+    <scaext:binding xsi:type="axis2:SOAPServiceBinding" xmi:id="_9DbtoEp_EeS5QOpAWIuKAQ" name="SOAPServiceBinding" targetNamespace="http://www.tibco.com/3c6e8f52d5ea4b2fb03ed8fef89506ed/SOAPServiceBinding" portTypeQName="zip.example.com:ZipPort" transportBindingType="JMS" attachmentStyle="SwA" modelVersion="1.1.0">
+      <bindingType xmi:id="_9DcUsEp_EeS5QOpAWIuKAQ"/>
+      <inboundConfiguration xsi:type="axis2:JMSInboundTransportConfiguration" xmi:id="_-RO9gEp_EeS5QOpAWIuKAQ" jmsResource="tibco.bw.sample.binding.soap.jms.zipcodelookup.JMSConnectionResource"/>
+      <operationConfiguration xmi:id="_9DcUsUp_EeS5QOpAWIuKAQ" operationName="getCityInfo" action="getCityInfo" actionNeeded="true">
+        <bindingType xmi:id="_9DcUskp_EeS5QOpAWIuKAQ"/>
+        <messageConfiguration xmi:id="_9DcUs0p_EeS5QOpAWIuKAQ" messageQName="zip.example.com:cityInfoRequest">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_9DcUtEp_EeS5QOpAWIuKAQ" partName="zip"/>
+        </messageConfiguration>
+        <messageConfiguration xmi:id="_9DcUtUp_EeS5QOpAWIuKAQ" messageQName="zip.example.com:cityInfoResponse" messageDirection="OUTPUT">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_9DcUtkp_EeS5QOpAWIuKAQ" partName="zipCode"/>
+        </messageConfiguration>
+        <context xmi:id="_9Dc7wEp_EeS5QOpAWIuKAQ">
+          <inputMapping xmi:id="_9Dc7wUp_EeS5QOpAWIuKAQ"/>
+          <outputMapping xmi:id="_9Dc7wkp_EeS5QOpAWIuKAQ" direction="OUTPUT"/>
+        </context>
+      </operationConfiguration>
+      <operationConfiguration xmi:id="_9DcUt0p_EeS5QOpAWIuKAQ" operationName="getCityDistance" action="getCityDistance" actionNeeded="true">
+        <bindingType xmi:id="_9DcUuEp_EeS5QOpAWIuKAQ"/>
+        <messageConfiguration xmi:id="_9DcUuUp_EeS5QOpAWIuKAQ" messageQName="zip.example.com:cityDistanceRequest">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_9DcUukp_EeS5QOpAWIuKAQ" partName="zips"/>
+        </messageConfiguration>
+        <messageConfiguration xmi:id="_9DcUu0p_EeS5QOpAWIuKAQ" messageQName="zip.example.com:cityDistanceResponse" messageDirection="OUTPUT">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_9DcUvEp_EeS5QOpAWIuKAQ" partName="part1"/>
+        </messageConfiguration>
+        <context xmi:id="_9Dc7w0p_EeS5QOpAWIuKAQ">
+          <inputMapping xmi:id="_9Dc7xEp_EeS5QOpAWIuKAQ"/>
+          <outputMapping xmi:id="_9Dc7xUp_EeS5QOpAWIuKAQ" direction="OUTPUT"/>
+        </context>
+      </operationConfiguration>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_9Dc7xkp_EeS5QOpAWIuKAQ" bindingName="SOAPServiceBinding">
+      <sca:property xmi:id="_IaEOsEqAEeS5QOpAWIuKAQ" name="destination" scaext:simpleValue="JMS_DESTINATION"/>
+    </scact:bindingAdjunct>
+  </sca:service>
+  <sca:reference xmi:id="_luM3IUqAEeS5QOpAWIuKAQ" multiplicity="0..1" name="ZipPort" wiredByImpl="false" promote="ComponentTestService/ZipPort">
+    <sca:interface.wsdl xmi:id="_luM3IkqAEeS5QOpAWIuKAQ" interface="http://zip.example.com#wsdl.interface(ZipPort)" scaext:wsdlLocation="../Service%20Descriptors/ZipInfo.wsdl"/>
+    <scaext:binding xsi:type="axis2:SOAPReferenceBinding" xmi:id="_nBr4QEqAEeS5QOpAWIuKAQ" name="SOAPReferenceBinding" portTypeQName="zip.example.com:ZipPort" transportBindingType="JMS" modelVersion="1.1.0" serviceQName="SOAPServiceBinding:ZipPort" portName="ZipPortSOAP" serviceBindingQName="SOAPServiceBinding:SOAPServiceBinding" destination="queue.sample">
+      <bindingType xmi:id="_nBx-4EqAEeS5QOpAWIuKAQ" style="DOCUMENT"/>
+      <operationConfiguration xmi:id="_nBx-4UqAEeS5QOpAWIuKAQ" operationName="getCityInfo" action="getCityInfo">
+        <bindingType xmi:id="_nBx-4kqAEeS5QOpAWIuKAQ" style="DOCUMENT"/>
+        <messageConfiguration xmi:id="_nBx-40qAEeS5QOpAWIuKAQ" description="zip" messageQName="zip.example.com:cityInfoRequest">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_nBx-5EqAEeS5QOpAWIuKAQ" partName="zip" encoding="literal"/>
+        </messageConfiguration>
+        <messageConfiguration xmi:id="_nBx-5UqAEeS5QOpAWIuKAQ" description="cityInfo" messageQName="zip.example.com:cityInfoResponse" messageDirection="OUTPUT">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_nBx-5kqAEeS5QOpAWIuKAQ" partName="zipCode" encoding="literal"/>
+        </messageConfiguration>
+        <context xmi:id="_nNbOMUqAEeS5QOpAWIuKAQ">
+          <inputMapping xmi:id="_nNbOMkqAEeS5QOpAWIuKAQ"/>
+          <outputMapping xmi:id="_nNbOM0qAEeS5QOpAWIuKAQ" direction="OUTPUT"/>
+        </context>
+      </operationConfiguration>
+      <operationConfiguration xmi:id="_nBx-50qAEeS5QOpAWIuKAQ" operationName="getCityDistance" action="getCityDistance">
+        <bindingType xmi:id="_nBx-6EqAEeS5QOpAWIuKAQ" style="DOCUMENT"/>
+        <messageConfiguration xmi:id="_nBx-6UqAEeS5QOpAWIuKAQ" messageQName="zip.example.com:cityDistanceRequest">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_nBx-6kqAEeS5QOpAWIuKAQ" partName="zips" encoding="literal"/>
+        </messageConfiguration>
+        <messageConfiguration xmi:id="_nBx-60qAEeS5QOpAWIuKAQ" messageQName="zip.example.com:cityDistanceResponse" messageDirection="OUTPUT">
+          <messagePartConfigurations xsi:type="axis2:BodyPartConfiguration" xmi:id="_nBx-7EqAEeS5QOpAWIuKAQ" partName="part1" encoding="literal"/>
+        </messageConfiguration>
+        <context xmi:id="_nNbONEqAEeS5QOpAWIuKAQ">
+          <inputMapping xmi:id="_nNb1QEqAEeS5QOpAWIuKAQ"/>
+          <outputMapping xmi:id="_nNb1QUqAEeS5QOpAWIuKAQ" direction="OUTPUT"/>
+        </context>
+      </operationConfiguration>
+      <outboundConfiguration xsi:type="axis2:JMSOutboundTransportConfiguration" xmi:id="_nNbOMEqAEeS5QOpAWIuKAQ" jmsResource="tibco.bw.sample.binding.soap.jms.zipcodelookup.JMSConnectionResource"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_nNb1QkqAEeS5QOpAWIuKAQ" bindingName="SOAPReferenceBinding">
+      <sca:property xmi:id="_oH3dMEqAEeS5QOpAWIuKAQ" name="destination" scaext:simpleValue="JMS_DESTINATION"/>
+    </scact:bindingAdjunct>
+  </sca:reference>
+  <sca:property xmi:id="_rJAIYEp_EeS5QOpAWIuKAQ" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJEZ0Ep_EeS5QOpAWIuKAQ" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJHdIEp_EeS5QOpAWIuKAQ" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJLHgEp_EeS5QOpAWIuKAQ" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJOK0Ep_EeS5QOpAWIuKAQ" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJROIEp_EeS5QOpAWIuKAQ" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJU4gEp_EeS5QOpAWIuKAQ" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJX70Ep_EeS5QOpAWIuKAQ" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_rJbmMEp_EeS5QOpAWIuKAQ" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AXh7oEqAEeS5QOpAWIuKAQ" name="JMS_DESTINATION" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_AaMOEEqAEeS5QOpAWIuKAQ" name="JNDI_CTX_FACTORY" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_AbyJgEqAEeS5QOpAWIuKAQ" name="JNDI_PROVIDER_URL" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_Ahz5AEqAEeS5QOpAWIuKAQ" name="OUTPUT_FILE" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_rD1UgEp_EeS5QOpAWIuKAQ" name="ComponentZipInfoService" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_rD1UgUp_EeS5QOpAWIuKAQ" processName="tibco.bw.sample.binding.soap.jms.zipcodelookup.ZipInfoService"/>
+    <sca:service xmi:id="_zAlIoEp_EeS5QOpAWIuKAQ" name="ZipPort">
+      <sca:interface.wsdl xmi:id="_zAlIoUp_EeS5QOpAWIuKAQ" interface="http://zip.example.com#wsdl.interface(ZipPort)" scaext:wsdlLocation="../Service%20Descriptors/ZipInfo.wsdl"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_WxpYQEqAEeS5QOpAWIuKAQ" name="ComponentTestService" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_WxpYQUqAEeS5QOpAWIuKAQ" processName="tibco.bw.sample.binding.soap.jms.zipcodelookup.TestService"/>
+    <sca:reference xmi:id="_luMQEEqAEeS5QOpAWIuKAQ" name="ZipPort">
+      <sca:interface.wsdl xmi:id="_luM3IEqAEeS5QOpAWIuKAQ" interface="http://zip.example.com#wsdl.interface(ZipPort)" scaext:wsdlLocation="../Service%20Descriptors/ZipInfo.wsdl"/>
+    </sca:reference>
+  </sca:component>
+</sca:composite>
